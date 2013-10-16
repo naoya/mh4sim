@@ -22,16 +22,10 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
     else
       selected_items[item.region] = null
 
-  $scope.selectedItems = (cond) ->
-    items = {}
-    angular.forEach $filter('filter')($scope.items,checked:true), (item) ->
-      items[item.region] = item
-    return items
-
   $scope.selectedItemByRegion = (region) ->
     return selected_items[region]
     
-  $scope.selectedSkills = (cond) ->
+  $scope.selectedSkills = () ->
     skills = {}
     angular.forEach selected_items, (item, region) ->
       if item?
