@@ -1,0 +1,58 @@
+.container
+  .page-header
+    h1 Monster Hunter 4 Item Simulator
+    p AngularJS Demo
+
+  section ng-controller="ItemsCtrl"
+    .row
+      .col-md-6
+        p
+          input type="text" ng-model="query" placeholder="絞り込み"
+
+        table border="1"
+          tbody
+            tr
+              th
+              th 部位
+              th 名前
+              th スキル
+              th 材料
+            tr ng-repeat="item in items|filter:query" ng-class="{'checked-true':item.checked, 'checked-false':item.checked}"
+              td
+                input type="checkbox" ng-model="item.checked" ng-change="selectItem(item)"
+              td
+                | {{item.name}}
+              td
+                | {{item.region}}
+              td
+                ul
+                  li ng-repeat="skill in item.skills"
+                    | {{skill.name}} ({{skill.value}})
+              td
+                ul
+                  li ng-repeat="material in item.materials"
+                    | {{material.name}} ({{material.amount}})
+
+      
+      .col-md-6
+        h3 選択されたアイテム
+        dl
+          div ng-repeat="region in ['頭', '胴', '腕', '腰', '足']"
+            dt
+              | {{region}}
+            dd ng-repeat="item in [selectedItemByRegion(region)]"
+              | {{item.name || "-"}}
+
+        h3 スキル合計
+        ul
+          li ng-repeat="(name, value) in selectedSkills()"
+            | {{name}} ({{value}})
+
+        h3 材料合計
+        ul
+          li ng-repeat="(name, amount) in selectedMaterials()"
+            | {{name}} ({{amount}})
+
+        h3 防御力合計
+        p
+          | {{totalArmorValue()|number}}
