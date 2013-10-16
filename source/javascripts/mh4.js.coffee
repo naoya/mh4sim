@@ -33,7 +33,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
     
   $scope.selectedSkills = (cond) ->
     skills = {}
-    # angular.forEach $filter('filter')($scope.items,checked:true), (item) ->
     angular.forEach selected_items, (item, region) ->
       if item?
         angular.forEach item.skills, (skill) ->
@@ -43,7 +42,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
 
   $scope.selectedMaterials = () ->
     materials = {}
-    # angular.forEach $filter('filter')($scope.items,checked:true), (item) ->
     angular.forEach selected_items, (item, region) ->
       if item?
         angular.forEach item.materials, (material) ->
