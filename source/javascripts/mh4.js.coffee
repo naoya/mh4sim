@@ -39,21 +39,16 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
       selected_items[item.region] = null
 
   $scope.calcTotalResists = ->
-    resists =
-      火: 0
-      水: 0
-      雷: 0
-      氷: 0
-      龍: 0
-      
+    resists = {}
     angular.forEach selected_items, (item, region) ->
       if item?
         angular.forEach item.resist, (value, element) ->
+          console.log(element)
           resists[element] ||= 0
           resists[element] += value
 
-    angular.forEach resists, (value, key) ->
-      $scope.total_resists[key] = value
+    angular.forEach $scope.total_resists, (value, element) ->
+      $scope.total_resists[element] = resists[element] || 0
   
   $scope.updateSkills = ->
     skills = {}
