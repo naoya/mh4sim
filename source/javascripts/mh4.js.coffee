@@ -17,6 +17,7 @@ app.value 'total_resists',
 itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items, total_resists) ->
   $scope.items = items
   $scope.selected_items = selected_items
+  $scope.required_materials = {}
   $scope.total_resists = total_resists
 
   $scope.selectItem = (item) ->
@@ -30,6 +31,7 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
       selected_items[item.region] = null
 
     $scope.calcTotalResists()
+    $scope.updateRequiredMaterials()
 
   $scope.calcTotalResists = ->
     resists =
@@ -63,14 +65,14 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
           skills[skill.name] += skill.value
     return skills
 
-  $scope.selectedMaterials = ->
+  $scope.updateRequiredMaterials = ->
     materials = {}
     angular.forEach selected_items, (item, region) ->
-      if item?
+      if item? and not item.approved
         angular.forEach item.materials, (material) ->
           materials[material.name] ||= 0
           materials[material.name] += material.amount
-    return materials
+    $scope.required_materials = materials
 
   $scope.totalArmorValue = ->
     armor = 0
@@ -78,14 +80,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
       if item?
         armor += item.armor
     return armor
-
-  $scope.orderedTotalresists = ->
-    result = []
-    ["火", "水", "雷", "氷", "龍"].map (e) ->
-      console.log e
-      # result.push element:e, value:$scope.totalResistByElement(e)
-      result.push element:e, value:$scope.totalResistByElement(e)
-    return result
 
 skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasPositiveEffect = () ->

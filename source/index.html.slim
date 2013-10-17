@@ -17,6 +17,7 @@
               th 名前
               th スキル
               th 材料
+              th 取得済
             tr ng-repeat="item in items|filter:query" ng-class="{'checked-true':item.checked, 'checked-false':item.checked}"
               td
                 input type="checkbox" ng-model="item.checked" ng-change="selectItem(item)"
@@ -32,7 +33,8 @@
                 ul
                   li ng-repeat="material in item.materials"
                     | {{material.name}} ({{material.amount}})
-
+              td
+                input type="checkbox" ng-model="item.approved" ng-change="updateRequiredMaterials()"
       
       .col-md-6
         h3 選択されたアイテム
@@ -58,9 +60,9 @@
             dd
               | {{totalResistByElement(element) | number}}
 
-        h3 材料合計
+        h3 必要な材料
         ul
-          li ng-repeat="(name, amount) in selectedMaterials()"
+          li ng-repeat="(name, amount) in required_materials"
             | {{name}} ({{amount}})
 
         h3 防御力合計
