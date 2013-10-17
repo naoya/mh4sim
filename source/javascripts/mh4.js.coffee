@@ -19,6 +19,7 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
   $scope.selected_items = selected_items
   $scope.required_materials = {}
   $scope.total_resists = total_resists
+  $scope.skills = {}
 
   $scope.selectItem = (item) ->
     if item.checked
@@ -30,8 +31,10 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
     else
       selected_items[item.region] = null
 
+    # FIXME: 本当はこれらの処理は selected_items を observe してそれに合わせて実行されるべき
     $scope.calcTotalResists()
     $scope.updateRequiredMaterials()
+    $scope.updateSkills()
 
   $scope.calcTotalResists = ->
     resists =
@@ -53,14 +56,14 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
   $scope.totalResistByElement = (element) ->
     return $scope.total_resists[element]
     
-  $scope.selectedSkills = ->
+  $scope.updateSkills = ->
     skills = {}
     angular.forEach selected_items, (item, region) ->
       if item?
         angular.forEach item.skills, (skill) ->
           skills[skill.name] ||= 0
           skills[skill.name] += skill.value
-    return skills
+    $scope.skills = skills
 
   $scope.updateRequiredMaterials = ->
     materials = {}
