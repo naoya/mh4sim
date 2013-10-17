@@ -42,7 +42,8 @@
           div ng-repeat="region in ['頭', '胴', '腕', '腰', '脚']"
             dt
               | {{region}}
-            dd ng-repeat="item in [selectedItemByRegion(region)]"
+            // FIXME: ここ ng-repeat する必要あるの?
+            dd ng-repeat="item in [selected_items[region]]"
               | {{item.name || "-"}}
 
         h3 スキル

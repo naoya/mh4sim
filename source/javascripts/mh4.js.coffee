@@ -50,9 +50,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
     angular.forEach resists, (value, key) ->
       $scope.total_resists[key] = value
 
-  $scope.selectedItemByRegion = (region) ->
-    return selected_items[region]
-
   $scope.totalResistByElement = (element) ->
     return $scope.total_resists[element]
     
