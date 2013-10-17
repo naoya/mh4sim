@@ -32,6 +32,7 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
       selected_items[item.region] = null
 
     # FIXME: 本当はこれらの処理は selected_items を observe してそれに合わせて実行されるべき
+    # 今はそうなってないので、updateRequiredMaterials() が view から明示的に呼ばれてしまってる
     $scope.calcTotalResists()
     $scope.updateRequiredMaterials()
     $scope.updateSkills()
