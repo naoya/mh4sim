@@ -49,7 +49,7 @@
         h3 スキル
         ul
           // FIXME: ここのバインド方法ちょっと不自然な気がする (name, value を構造化してバインドさせたいんだけど...)
-          li ng-repeat="(name, value) in skills" ng-controller="SkillCtrl"
+          li ng-repeat="(name, value) in skills track by name" ng-controller="SkillCtrl"
             span ng-class="{'skill-positive':hasPositiveEffect(), 'skill-negative':hasNegativeEffect()}"
               | {{name}} ({{value}})
 
@@ -63,7 +63,7 @@
 
         h3 必要な材料
         ul
-          li ng-repeat="(name, amount) in required_materials"
+          li ng-repeat="(name, amount) in required_materials track by name"
             | {{name}} ({{amount}})
 
         h3 防御力合計
