@@ -31,12 +31,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
     else
       selected_items[item.region] = null
 
-    # FIXME: 本当はこれらの処理は selected_items を observe してそれに合わせて実行されるべき
-    # 今はそうなってないので、updateRequiredMaterials() が view から明示的に呼ばれてしまってる
-    $scope.calcTotalResists()
-    $scope.updateRequiredMaterials()
-    $scope.updateSkills()
-
   $scope.calcTotalResists = ->
     resists =
       火: 0
@@ -82,6 +76,15 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
         armor += item.armor
     return armor
 
+  ## register observer
+  $scope.$watchCollection 'selected_items', $scope.calcTotalResists
+  $scope.$watchCollection 'selected_items', $scope.updateSkills
+  $scope.$watchCollection 'selected_items', $scope.updateRequiredMaterials
+
+## itemCtrl extends itemsCtrl
+itemCtrl = app.controller 'ItemCtrl', ($scope) ->
+  $scope.$watch 'item.approved', $scope.updateRequiredMaterials
+
 skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasPositiveEffect = () ->
     return $scope.value >= 10
@@ -89,7 +92,6 @@ skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasNegativeEffect = () ->
     return $scope.value <= -10
 
-# resistCtrl = app.controller 'ResistCtrl', ($scope) ->
-
 itemsCtrl.$inject = ['$scope', '$filter', 'items', 'selected_items', 'total_resists']
+itemCtrl.$inject  = ['$scope']
 skillCtrl.$inject = ['$scope']
