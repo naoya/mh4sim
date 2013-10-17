@@ -43,6 +43,7 @@
             dd ng-repeat="item in [selectedItemByRegion(region)]"
               | {{item.name || "-"}}
 
+        h3 スキル
         ul
           // FIXME: ここのバインド方法ちょっと不自然な気がする (name, value を構造化してバインドさせたいんだけど...)
           li ng-repeat="(name, value) in selectedSkills()" ng-controller="SkillCtrl"
