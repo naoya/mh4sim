@@ -18,7 +18,7 @@
               th スキル
               th 材料
               th 取得済
-            tr ng-repeat="item in items|filter:query" ng-controller="ItemCtrl" ng-class="{'checked-true':item.checked, 'checked-false':item.checked}"
+            tr ng-repeat="item in items|filter:query" ng-class="{'checked-true':item.checked, 'checked-false':item.checked}"
               td
                 input type="checkbox" ng-model="item.checked" ng-change="selectItem(item)"
               td

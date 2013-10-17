@@ -76,11 +76,11 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
   ## register observer
   $scope.$watchCollection 'selected_items', $scope.calcTotalResists
   $scope.$watchCollection 'selected_items', $scope.updateSkills
-  $scope.$watchCollection 'selected_items', $scope.updateRequiredMaterials
+  $scope.$watch 'selected_items', $scope.updateRequiredMaterials, true
 
 ## itemCtrl extends itemsCtrl
-itemCtrl = app.controller 'ItemCtrl', ($scope) ->
-  $scope.$watch 'item.approved', $scope.updateRequiredMaterials
+# itemCtrl = app.controller 'ItemCtrl', ($scope) ->
+#   $scope.$watch 'item.approved', $scope.updateRequiredMaterials
 
 skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasPositiveEffect = () ->
@@ -90,5 +90,5 @@ skillCtrl = app.controller 'SkillCtrl', ($scope) ->
     return $scope.value <= -10
 
 itemsCtrl.$inject = ['$scope', '$filter', 'items', 'selected_items', 'total_resists']
-itemCtrl.$inject  = ['$scope']
+# itemCtrl.$inject  = ['$scope']
 skillCtrl.$inject = ['$scope']
