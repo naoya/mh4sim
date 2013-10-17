@@ -52,7 +52,11 @@
 
         h3 耐性
         dl
-          div ng-repeat=""
+          div ng-repeat="element in ['火', '水', '雷', '氷', '龍']"
+            dt
+              | {{element}}
+            dd
+              | {{totalResistByElement(element) | number}}
 
         h3 材料合計
         ul

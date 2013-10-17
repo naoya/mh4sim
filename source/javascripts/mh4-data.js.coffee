@@ -19,15 +19,12 @@ app.value 'items', [
       { name:'覇竜の堅殻', amount:6 } 
       { name:'轟竜のアギト', amount:1 }
     ]
-    resist: [
-      {
-        火: 4
-        水: 0
-        雷: -3
-        氷: 2
-        龍: -5
-      }
-    ]
+    resist:
+      火: 4
+      水: 0
+      雷: -3
+      氷: 2
+      龍: -5
   }
   {
     region:"胴"
@@ -47,15 +44,12 @@ app.value 'items', [
       { name:'覇竜の上鱗', amount:4 } 
       { name:'火竜の紅玉', amount:1 }
     ]
-    resist: [
-      {
-        火: 4
-        水: 0
-        雷: -3
-        氷: 2
-        龍: -5
-      }
-    ]
+    resist:
+      火: 4
+      水: 0
+      雷: -3
+      氷: 2
+      龍: -5
   }
   {
     region:"腕"
@@ -75,15 +69,12 @@ app.value 'items', [
       { name:'覇竜の宝玉', amount:1 } 
       { name:'鎧竜の延髄', amount:2 }
     ]
-    resist: [
-      {
-        火: 4
-        水: 0
-        雷: -3
-        氷: 2
-        龍: -5
-      }
-    ]
+    resist:
+      火: 4
+      水: 0
+      雷: -3
+      氷: 2
+      龍: -5
   }
   {
     region:"腰"
@@ -103,15 +94,12 @@ app.value 'items', [
       { name:'覇竜の尻尾', amount:1 } 
       { name:'雌火竜の紅玉', amount:1 }
     ]
-    resist: [
-      {
-        火: 4
-        水: 0
-        雷: -3
-        氷: 2
-        龍: -5
-      }
-    ]
+    resist:
+      火: 4
+      水: 0
+      雷: -3
+      氷: 2
+      龍: -5
   }
   {
     region:"脚"
@@ -131,15 +119,12 @@ app.value 'items', [
       { name:'覇竜の堅殻', amount:5 } 
       { name:'砕竜の宝玉', amount:1 }
     ]
-    resist: [
-      {
-        火: 4
-        水: 0
-        雷: -3
-        氷: 2
-        龍: -5
-      }
-    ]
+    resist:
+      火: 4
+      水: 0
+      雷: -3
+      氷: 2
+      龍: -5
   }
   ## シルバーソル
   {

@@ -1,16 +1,23 @@
 app = angular.module('mh4App', [])
 
-app.value 'selected_items', {
-  "頭": null
-  "胴": null
-  "腕": null
-  "腰": null
-  "脚": null
-}
+app.value 'selected_items',
+  頭: null
+  胴: null
+  腕: null
+  腰: null
+  脚: null
 
-itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items) ->
+app.value 'total_resists',
+  火: 0
+  水: 0
+  雷: 0
+  氷: 0
+  龍: 0
+
+itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items, total_resists) ->
   $scope.items = items
   $scope.selected_items = selected_items
+  $scope.total_resists = total_resists
 
   $scope.selectItem = (item) ->
     if item.checked
@@ -22,10 +29,32 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
     else
       selected_items[item.region] = null
 
+    $scope.calcTotalResists()
+
+  $scope.calcTotalResists = ->
+    resists =
+      火: 0
+      水: 0
+      雷: 0
+      氷: 0
+      龍: 0
+      
+    angular.forEach selected_items, (item, region) ->
+      if item?
+        angular.forEach item.resist, (value, element) ->
+          resists[element] ||= 0
+          resists[element] += value
+
+    angular.forEach resists, (value, key) ->
+      $scope.total_resists[key] = value
+
   $scope.selectedItemByRegion = (region) ->
     return selected_items[region]
+
+  $scope.totalResistByElement = (element) ->
+    return $scope.total_resists[element]
     
-  $scope.selectedSkills = () ->
+  $scope.selectedSkills = ->
     skills = {}
     angular.forEach selected_items, (item, region) ->
       if item?
@@ -34,7 +63,7 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
           skills[skill.name] += skill.value
     return skills
 
-  $scope.selectedMaterials = () ->
+  $scope.selectedMaterials = ->
     materials = {}
     angular.forEach selected_items, (item, region) ->
       if item?
@@ -43,12 +72,20 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
           materials[material.name] += material.amount
     return materials
 
-  $scope.totalArmorValue = () ->
+  $scope.totalArmorValue = ->
     armor = 0
     angular.forEach selected_items, (item, region) ->
       if item?
         armor += item.armor
     return armor
+
+  $scope.orderedTotalresists = ->
+    result = []
+    ["火", "水", "雷", "氷", "龍"].map (e) ->
+      console.log e
+      # result.push element:e, value:$scope.totalResistByElement(e)
+      result.push element:e, value:$scope.totalResistByElement(e)
+    return result
 
 skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasPositiveEffect = () ->
@@ -57,5 +94,7 @@ skillCtrl = app.controller 'SkillCtrl', ($scope) ->
   $scope.hasNegativeEffect = () ->
     return $scope.value <= -10
 
-itemsCtrl.$inject = ['$scope', '$filter', 'items', 'selected_items']
+# resistCtrl = app.controller 'ResistCtrl', ($scope) ->
+
+itemsCtrl.$inject = ['$scope', '$filter', 'items', 'selected_items', 'total_resists']
 skillCtrl.$inject = ['$scope']
