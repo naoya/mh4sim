@@ -5,7 +5,7 @@ app.value 'selected_items', {
   "胴": null
   "腕": null
   "腰": null
-  "足": null
+  "脚": null
 }
 
 itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items) ->
