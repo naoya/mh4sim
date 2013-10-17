@@ -21,6 +21,13 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
   $scope.total_resists = total_resists
   $scope.skills = {}
 
+  $scope.getTotalArmorValue = ->
+    armor = 0
+    angular.forEach selected_items, (item, region) ->
+      if item?
+        armor += item.armor
+    return armor
+
   $scope.selectItem = (item) ->
     if item.checked
       # 選択済みの部位と被ってたら前のを選択解除
@@ -47,10 +54,7 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
 
     angular.forEach resists, (value, key) ->
       $scope.total_resists[key] = value
-
-  $scope.totalResistByElement = (element) ->
-    return $scope.total_resists[element]
-    
+  
   $scope.updateSkills = ->
     skills = {}
     angular.forEach selected_items, (item, region) ->
@@ -68,13 +72,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
           materials[material.name] ||= 0
           materials[material.name] += material.amount
     $scope.required_materials = materials
-
-  $scope.totalArmorValue = ->
-    armor = 0
-    angular.forEach selected_items, (item, region) ->
-      if item?
-        armor += item.armor
-    return armor
 
   ## register observer
   $scope.$watchCollection 'selected_items', $scope.calcTotalResists

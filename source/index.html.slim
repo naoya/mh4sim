@@ -59,7 +59,7 @@
             dt
               | {{element}}
             dd
-              | {{totalResistByElement(element) | number}}
+              | {{total_resists[element] | number}}
 
         h3 必要な材料
         ul
@@ -68,4 +68,4 @@
 
         h3 防御力合計
         p
-          | {{totalArmorValue()|number}}
+          | {{getTotalArmorValue()|number}}
