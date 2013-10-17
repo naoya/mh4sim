@@ -50,4 +50,12 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items)
         armor += item.armor
     return armor
 
+skillCtrl = app.controller 'SkillCtrl', ($scope) ->
+  $scope.hasPositiveEffect = () ->
+    return $scope.value >= 10
+
+  $scope.hasNegativeEffect = () ->
+    return $scope.value <= -10
+
 itemsCtrl.$inject = ['$scope', '$filter', 'items', 'selected_items']
+skillCtrl.$inject = ['$scope']

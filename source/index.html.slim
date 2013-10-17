@@ -43,10 +43,15 @@
             dd ng-repeat="item in [selectedItemByRegion(region)]"
               | {{item.name || "-"}}
 
-        h3 スキル合計
         ul
-          li ng-repeat="(name, value) in selectedSkills()"
-            | {{name}} ({{value}})
+          // FIXME: ここのバインド方法ちょっと不自然な気がする (name, value を構造化してバインドさせたいんだけど...)
+          li ng-repeat="(name, value) in selectedSkills()" ng-controller="SkillCtrl"
+            span ng-class="{'skill-positive':hasPositiveEffect(), 'skill-negative':hasNegativeEffect()}"
+              | {{name}} ({{value}})
+
+        h3 耐性
+        dl
+          div ng-repeat=""
 
         h3 材料合計
         ul
