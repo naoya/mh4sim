@@ -19,6 +19,15 @@ app.value 'items', [
       { name:'覇竜の堅殻', amount:6 } 
       { name:'轟竜のアギト', amount:1 }
     ]
+    resist: [
+      {
+        火: 4
+        水: 0
+        雷: -3
+        氷: 2
+        龍: -5
+      }
+    ]
   }
   {
     region:"胴"
@@ -38,6 +47,43 @@ app.value 'items', [
       { name:'覇竜の上鱗', amount:4 } 
       { name:'火竜の紅玉', amount:1 }
     ]
+    resist: [
+      {
+        火: 4
+        水: 0
+        雷: -3
+        氷: 2
+        龍: -5
+      }
+    ]
+  }
+  {
+    region:"腕"
+    rare:7
+    name:"アカムトサンクンペ"
+    roma:"akamutosakunnpe"
+    armor: 65
+    skills: [
+      { name:'匠', value:2 }
+      { name:'達人', value:1 }
+      { name:'聴覚保護', value:1 }
+      { name:'切れ味', value:-2 }
+    ]
+    materials: [
+      { name:'覇竜の剛爪', amount:5 }
+      { name:'覇竜の上鱗', amount:4 }
+      { name:'覇竜の宝玉', amount:1 } 
+      { name:'鎧竜の延髄', amount:2 }
+    ]
+    resist: [
+      {
+        火: 4
+        水: 0
+        雷: -3
+        氷: 2
+        龍: -5
+      }
+    ]
   }
   {
     region:"腰"
@@ -56,6 +102,43 @@ app.value 'items', [
       { name:'覇竜の大牙', amount:3 }
       { name:'覇竜の尻尾', amount:1 } 
       { name:'雌火竜の紅玉', amount:1 }
+    ]
+    resist: [
+      {
+        火: 4
+        水: 0
+        雷: -3
+        氷: 2
+        龍: -5
+      }
+    ]
+  }
+  {
+    region:"脚"
+    rare:7
+    name:"アカムトケマル"
+    roma:"akamutokemaru"
+    armor:65
+    skills: [
+      { name:'匠', value:3 }
+      { name:'達人', value:3 }
+      { name:'聴覚保護', value:1 }
+      { name:'切れ味', value:-3 }
+    ]
+    materials: [
+      { name:'覇竜の上鱗', amount:5 }
+      { name:'覇竜の剛爪', amount:5 }
+      { name:'覇竜の堅殻', amount:5 } 
+      { name:'砕竜の宝玉', amount:1 }
+    ]
+    resist: [
+      {
+        火: 4
+        水: 0
+        雷: -3
+        氷: 2
+        龍: -5
+      }
     ]
   }
   ## シルバーソル
