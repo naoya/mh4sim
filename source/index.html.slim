@@ -20,9 +20,10 @@
               th 取得済
             tr ng-repeat="item in items|filter:query" ng-class="{'checked-true':item.checked, 'checked-false':item.checked}"
               td
-                input type="checkbox" ng-model="item.checked" ng-change="selectItem(item)"
+                input type="checkbox" ng-model="item.checked" id="item-{{item.name}}" ng-change="selectItem(item)"
               td
-                | {{item.name}}
+                label for="item-{{item.name}}"
+                  | {{item.name}}
               td
                 | {{item.region}}
               td
