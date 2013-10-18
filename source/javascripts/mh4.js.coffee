@@ -43,7 +43,6 @@ itemsCtrl = app.controller 'ItemsCtrl', ($scope, $filter, items, selected_items,
     angular.forEach selected_items, (item, region) ->
       if item?
         angular.forEach item.resist, (value, element) ->
-          console.log(element)
           resists[element] ||= 0
           resists[element] += value
 
