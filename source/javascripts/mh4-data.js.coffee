@@ -153,7 +153,7 @@ app.value 'items', [
       龍: 4
   }
   {
-    region:"頭"
+    region:"胴"
     rare:7
     name:"シルバーソルメイル"
     roma: "siruba-sorumeiru"
